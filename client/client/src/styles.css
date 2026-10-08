@@ -1,0 +1,31 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: #1e293b; background: #f8fafc; }
+.layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+aside { background: #0f172a; color: #e2e8f0; padding: 16px; }
+aside h2 { margin-top: 0; font-size: 16px; }
+.item { padding: 8px 10px; border-radius: 6px; cursor: pointer; margin-top: 4px; }
+.item:hover, .item.active { background: #1e293b; }
+main { padding: 24px; overflow-x: auto; }
+button, .btn { background: #4f46e5; color: #fff; border: 0; padding: 8px 14px; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 14px; }
+button:disabled { opacity: .6; cursor: wait; }
+.ghost { background: #fff; color: #334155; border: 1px solid #cbd5e1; }
+.danger { color: #be123c; }
+.head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.row { display: flex; gap: 8px; align-items: center; }
+.muted { color: #64748b; font-size: 13px; }
+.error { color: #be123c; }
+.card { background: #fff; padding: 20px; border-radius: 10px; max-width: 560px; display: grid; gap: 12px; }
+label { display: grid; gap: 4px; font-size: 14px; }
+input, textarea { padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font: inherit; }
+.tabs { display: flex; gap: 6px; margin: 16px 0; flex-wrap: wrap; align-items: center; }
+.tab { background: #fff; color: #334155; border: 1px solid #cbd5e1; }
+.tab.on { background: #0f172a; color: #fff; }
+.tabs input { margin-left: auto; min-width: 240px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; }
+th, td { padding: 10px; text-align: left; border-bottom: 1px solid #e2e8f0; vertical-align: top; font-size: 14px; }
+.miss { color: #be123c; }
+.badge { padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+.Shortlisted { background: #ccfbf1; color: #0f766e; }
+.Potential { background: #e0e7ff; color: #4338ca; }
+.NotaMatch { background: #ffe4e6; color: #be123c; }
+.Unreadable { background: #e2e8f0; color: #475569; }

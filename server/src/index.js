@@ -2,8 +2,10 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
+app.use(cors({ origin: 'https://cv-bank-new-fiz3.vercel.app' }));
 app.use(express.json());
 app.use('/api', require('./routes'));
 

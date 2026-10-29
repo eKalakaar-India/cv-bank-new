@@ -1,9 +1,15 @@
 const pdfParse = require('pdf-parse');
 const mammoth = require('mammoth');
+const WordExtractor = require('word-extractor');
+
+const DOC = 'application/msword';
+const DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+const wordExtractor = new WordExtractor();
 
 async function extractText(buffer, mimeType) {
   if (mimeType === 'application/pdf') return (await pdfParse(buffer)).text;
-  if (mimeType.includes('wordprocessingml')) return (await mammoth.extractRawText({ buffer })).value;
+  if (mimeType === DOC) return (await wordExtractor.extract(buffer)).getBody();
+  if (mimeType === DOCX) return (await mammoth.extractRawText({ buffer })).value;
   return buffer.toString('utf8');
 }
 

@@ -4,8 +4,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const origins = [
+  'https://cv-bank-new-fiz3.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'https://cv-bank-new.vercel.app/'
+];
 const app = express();
-app.use(cors({ origin: 'https://cv-bank-new-fiz3.vercel.app' }));
+app.use(cors({ origin: origins }));
 app.use(express.json());
 app.use('/api', require('./routes'));
 

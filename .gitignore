@@ -4,6 +4,8 @@ service.json
 .env.production
 .env.development
 
+/server/credentials/subtle-digit-381006-6e2e7b771e94.json
+
 # Logs
 logs
 *.log

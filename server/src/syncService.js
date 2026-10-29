@@ -18,7 +18,7 @@ async function processFile(req, file) {
   };
   let data;
   if (!SUPPORTED.has(file.mimeType)) {
-    data = { ...base, category: 'Unreadable', note: 'Unsupported type (use PDF, DOCX, TXT or Google Doc)' };
+    data = { ...base, category: 'Unreadable', note: 'Unsupported type (use PDF, DOC, DOCX, TXT or Google Doc)' };
   } else {
     try {
       const text = (await extractText(await download(file), file.mimeType)).trim();

@@ -1,10 +1,34 @@
+const { createPrivateKey } = require('crypto');
 const { google } = require('googleapis');
+
+function getPrivateKey(value) {
+  if (!value) return value;
+
+  let privateKey = value.trim();
+  if (
+    (privateKey.startsWith('"') && privateKey.endsWith('"')) ||
+    (privateKey.startsWith("'") && privateKey.endsWith("'"))
+  ) {
+    privateKey = privateKey.slice(1, -1);
+  }
+  privateKey = privateKey.replace(/\\n/g, '\n').replace(/\r\n/g, '\n');
+
+  try {
+    createPrivateKey(privateKey);
+  } catch {
+    throw new Error(
+      'Invalid GOOGLE_PRIVATE_KEY. Set it to the service-account PEM private key, preserving the BEGIN/END lines and newline characters.'
+    );
+  }
+
+  return privateKey;
+}
 
 const auth = new google.auth.GoogleAuth({
   credentials: {
     project_id: process.env.GOOGLE_PROJECT_ID,
     client_email: process.env.GOOGLE_CLIENT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    private_key: getPrivateKey(process.env.GOOGLE_PRIVATE_KEY),
   },
   scopes: ['https://www.googleapis.com/auth/drive.readonly'],
 });
@@ -16,10 +40,13 @@ const drive = google.drive({
 
 const FOLDER = 'application/vnd.google-apps.folder';
 const GDOC = 'application/vnd.google-apps.document';
+const DOC = 'application/msword';
+const DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
 
 const SUPPORTED = new Set([
   'application/pdf',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  DOC,
+  DOCX,
   'text/plain',
   GDOC,
 ]);

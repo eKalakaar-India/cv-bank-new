@@ -16,9 +16,9 @@ app.use(express.json());
 app.use('/api', require('./routes'));
 
 // Production: serve the built React app from the same port
-const dist = path.join(__dirname, '../../client/dist');
-app.use(express.static(dist));
-app.get('{*splat}', (_, res) => res.sendFile(path.join(dist, 'index.html')));
+// const dist = path.join(__dirname, '../../client/dist');
+// app.use(express.static(dist));
+// app.get('{*splat}', (_, res) => res.sendFile(path.join(dist, 'index.html')));
 
 app.use((err, req, res, next) => {
   console.error(err);
